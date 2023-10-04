@@ -1,0 +1,67 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+int main(void)
+{
+	int jumsu;
+
+	printf("0점에서 100점 사이의 점수를 입력하세요.\n");
+	scanf("%d", &jumsu);
+
+	if (jumsu >= 0 && jumsu <= 100)
+		printf("입력한 점수는 %d점입니다.\n", jumsu);
+	else
+	{
+		printf("0점에서 100점 사이를 입력하셔야 합니다.\n");
+		return 0;
+	}
+
+	if (jumsu >= 90 &&jumsu <= 100)
+		printf("%d점은 A학점입니다.\n", jumsu);
+	
+	else if (jumsu >= 80 &&jumsu <= 89)
+		printf("%d점은 B학점입니다.\n", jumsu);
+
+	else if (jumsu >= 70 &&jumsu <= 79)
+		printf("%d점은 C학점입니다.\n", jumsu);
+
+	else if (jumsu >= 60 &&jumsu <= 69)
+		printf("%d점은 D학점입니다.\n", jumsu);
+
+	else if (jumsu >= 50 &&jumsu < 59)
+		printf("%d점은 F학점입니다.\n", jumsu);
+
+	else if (jumsu <= 50)
+		printf("%d점은 재수강입니다.\n", jumsu);
+
+	return 0;
+}
+
+다중 if문을 사용한 예와 사용하지 않은 예 비교해보기 >> 정리노트
+switch~case문
+얘기하고 정리하기.
+두개의 키가 있는데 두가지 키가 연결이 된다.
+CASE에서 나누기 처리하면 몫만 계산이 된다. CASE는 상숫값만 처리한다.
+나누기 10을 해서 몫값만 구해서 상숫값으로 처리한다.
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main(void)
+{
+	int score;
+
+	printf("당신의 점수를 입력하세요 : ");
+	scanf("%d", &score);
+
+	switch (score / 10)
+	{
+	case 10: 
+	case 9: printf("점수는 %d점이고 성적은 %c입니다.\n", score, 'A'); break;
+	case 8: printf("점수는 %d점이고 성적은 %c입니다.\n", score, 'B'); break;
+	case 7: printf("점수는 %d점이고 성적은 %c입니다.\n", score, 'C'); break;
+	case 6: printf("점수는 %d점이고 성적은 %c입니다.\n", score, 'D'); break;
+
+	default: printf("점수는 %d점이고 성적은 %c입니다.\n", score, 'F'); break;
+
+	}
+	return 0;
+}
