@@ -1,12 +1,25 @@
+if문에서 괄호를 중요시하는 이유가 뭐라고 생각해?
+먼저 괄호를 빼고 if조건식을 구했을때는 두문장을 넣고 조건식이 참이면 두 문장을 수행하는데 거짓이여도 마지막 문장이 수행 되더라고.
+근데 반대로 if문에서 괄호를 넣고 하니까 두 문장을 넣고 조건식이 참이면 두 문장을 수행했는데 거짓이면 두 문장 다 수행되지 않더라고.
+우리가 알 수 있는게 여기서 조건식에서 괄호를 안쓰게 되면 참이 아니여도 문장이 수행된다는 거네! 두 문장 이상시 괄호를 안 쓰고 if문을 작성하면 오류값이 나올 수 있겠네!
+
+if를 한 번만 사용할 수 있는 게 아니고 여러번 사용할 수 있다는데 너는 다중 if문과 다중 if문을 사용하지 않은 것중 뭐가 더 편리한 거 같아?
+나는 다중 if문과 다중 if문을 사용하지 않고 둘 다 코딩을 해봤는데 나는 다중 if문을 사용하지 않은 것이 더 편리한 거 같애.
+이유가 뭐야?
+if가 중첩되지 않는 문에서는 조건중 만족되는 값에 출력되고, if가 중첩이 되면 조건 만족 후 다음 조건을 또 체크해서 넘어가기 때문에 계속 조건식이 나열되기 때문에 다중if문을 사용하지 않는 것이 더 편리하다고 느껴져.
+
+다중if문을 사용하지 않는 것이 편리하다고 느껴지는데 필요할 때도 있어.
+다중if문을 이용해서 학점을 처리한 코드인데 단순 비교가 아닌 여러개의 조건 비교가 필요할때는 다중if문을 써야하기 때문이야.
+학점은 단계별 분류로 구현하기 좋은 경우고 학점을 계산할 때 10점 단위로 끊어 계산하는데 점수가 10점 단위로 높아질수록 혹은 낮아질수록 학점도 같이 높아지거나 낮아지기 때문이야!
+상황에 맞게 쓰는게 가장 좋은 거 같애.
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-int main(void)
-{
-	int jumsu;
 
+int main(void)
+{	int jumsu;
 	printf("0점에서 100점 사이의 점수를 입력하세요.\n");
 	scanf("%d", &jumsu);
-
 	if (jumsu >= 0 && jumsu <= 100)
 		printf("입력한 점수는 %d점입니다.\n", jumsu);
 	else
@@ -14,65 +27,55 @@ int main(void)
 		printf("0점에서 100점 사이를 입력하셔야 합니다.\n");
 		return 0;
 	}
-
 	if (jumsu >= 90 &&jumsu <= 100)
 		printf("%d점은 A학점입니다.\n", jumsu);
-	
-	else if (jumsu >= 80 &&jumsu <= 89)
+		else if (jumsu >= 80 &&jumsu <= 89)
 		printf("%d점은 B학점입니다.\n", jumsu);
-
 	else if (jumsu >= 70 &&jumsu <= 79)
 		printf("%d점은 C학점입니다.\n", jumsu);
-
 	else if (jumsu >= 60 &&jumsu <= 69)
 		printf("%d점은 D학점입니다.\n", jumsu);
-
 	else if (jumsu >= 50 &&jumsu < 59)
 		printf("%d점은 F학점입니다.\n", jumsu);
-
 	else if (jumsu <= 50)
 		printf("%d점은 재수강입니다.\n", jumsu);
-
-	return 0;
+        return 0;
 }
 
-다중 if문을 사용한 예와 사용하지 않은 예 비교해보기 >> 정리노트
 switch~case문
-얘기하고 정리하기.
-두개의 키가 있는데 두가지 키가 연결이 된다.
-CASE에서 나누기 처리하면 몫만 계산이 된다. CASE는 상숫값만 처리한다.
-나누기 10을 해서 몫값만 구해서 상숫값으로 처리한다.
-IF문에서 중괄호를 잘못사용하면 자기의 의도없이 수행히되는데
-BREAK문을 잘 사용해야한다.
+일단 switch의 조건값은 정숫값이다. CASE에서 나누기 처리하면 몫만 계산이 되고, CASE는 상숫값만 처리한다.
+정숫값이 1이면 1의 값에 해당하는 문장, 정숫값이 2이면 2의 값에 해당하는 문장을 실행하는 방식으로 편리하다.
+두개의 키가 있는데 두개 키가 연결이 된다고 보면 된다.
+swith문의 조건으로 수식사용할때 / 10을 해서 몫값만 구해서 상숫값으로 처리하면 돼!
+각각의 실행문 마지막에 BREAK문을 반드시 써야한다는 것이 중요하다. 왜?
+그렇지 않으면 switch~case문이 빠져나가지 못하고 다음 코드를 계속 수행하기 때문이다. 
+break을 사용하지 않은 채 넘어갔더니 case 문이 전부가 나온다. 
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
 int main(void)
-{
-	int score;
-
+{	int score;
 	printf("당신의 점수를 입력하세요 : ");
 	scanf("%d", &score);
-
 	switch (score / 10)
 	{
 	case 10: 
-	case 9: printf("점수는 %d점이고 성적은 %c입니다.\n", score, 'A'); break;
+	case 9: printf("점수는 %d점이고 성적은 %c입니다.\n", score, 'A'); break; // 이와같이 break을 사용하고 다음 case로 넘어가줘야 문제없이 실행된다.
 	case 8: printf("점수는 %d점이고 성적은 %c입니다.\n", score, 'B'); break;
 	case 7: printf("점수는 %d점이고 성적은 %c입니다.\n", score, 'C'); break;
 	case 6: printf("점수는 %d점이고 성적은 %c입니다.\n", score, 'D'); break;
-
 	default: printf("점수는 %d점이고 성적은 %c입니다.\n", score, 'F'); break;
-
 	}
 	return 0;
 }
 
-뭐가 잘못되엇는가? 코드가 7-8 더 들어가있다 중복
-Break이 잇으면 중복되는것을 막을 수 있다.
-같은 결과값을 내지만 코드자체가 줄어든다.
-코드가 간결해짐.
+IF문에서 중괄호를 잘못사용하면 자기의 의도없이 수행히되니 조심해야한다.
+다음 코드를 보면 뭐가 잘못되었을까? 코드가 7-8 더 들어가있다 중복된게 많다. break이 잘못사용되어있다.
+이럴때 Break이 있으면 중복되는것을 막을 수 있지만 잘못 사용할 수 있으니 적절하게 사용하여야 한다.
+왜냐하면 같은 결과값을 내지만 코드자체가 줄어든다. 고로 코드가 간결해진다.
 
+#잘못된 예시
 // input이 1일 경우 : 4.2 <= 평점 < 4.3
 // input이 2일 경우 : 4.3 <= 평점 < 4.4
 // input이 3일 경우 : 4.4 <= 평점
@@ -94,41 +97,51 @@ default :
 printf("잘못 입력했습니다. 1~3 사이의 숫자를 입력하세요.\n");
 }
 
+조건 연산자 이용해서 큰값 작은 값 구해보자.
 if문으로 바꿔서 해보기
 #include <stdio.h>
 int main(void)
-{
-	int min, max;
-
+{	
+int min, max;
 	int x = 10, y = 20;
-
 	max = (x > y) ? x : y;
 	min = (x > y) ? y : x;
-
 	printf("두 수 %d과 %d 중에 큰 수는 %d이다.\n", x, y, max);
 	printf("두 수 %d과 %d 중에 작은 수는 %d이다.\n", x, y, min);
-
 	return 0;
 }
+y의 값이 x보다 크기 때문에 max 결과값이 20이다
+x의 값이 y보다 작기 때문에 min 결과값이 10이다.
 
-166p 08
+연습문제 8번
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-
 int main(void)
 {
 	int age;
-
-	printf("당신의 나이를 입력하세요 : ");
+	printf("나이: ");
 	scanf("%d", &age);
 
-	switch (age / 5)
-	{
-	    case 5:
-		case 4: printf("나이는 %d대이상이고 1년간 데이터 1G 제공, 3개월 통신요금 10% 할인\n", age); break;
-		case 3: printf("나이는 %d대이고 1년간 데이터 1G 제공, 6개월 통신요금 10% 할인\n", age); break;
-		case 2: printf("나이는 %d대이고 1년간 데이터 1G 제공, 6개월 통신요금 10% 할인\n", age); break;
+	age > 50 ? age = 50 : age; // 50세 이상도 다 50세로 표현한다.
 
-		default: printf("나이는 %d대이고 커피쿠폰 5매증정\n", age); break;
+	switch (age / 10 * 10) // 10으로 나누고 다시 10을 곱해준다. CASE 몫만 구하기 위해서
+	{
+	case 50:
+		printf("1년간 데이터 매달 1G 제공\n");
+		break;
+	case 40:
+		printf("1년간 데이터 매달 1G 제공, 9개월 통신요금 10%% 할인\n");
+		break;
+	case 30:
+		printf("1년간 데이터 매달 1G 제공, 6개월 통신요금 10%% 할인\n");
+		break;
+	case 20:
+		printf("1년간 데이터 매달 1G 제공, 3개월 통신요금 10%% 할인\n");
+		break;
+	default:
+		printf("커피 쿠폰 5매 증정\n");
+		break;
 	}
+	return 0;
 }
